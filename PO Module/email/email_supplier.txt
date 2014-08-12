@@ -1,0 +1,11 @@
+We haven't received tracking information for {po_number} yet.  Has this order shipped?  The order information is below:
+
+PO Sent On: {po_date}
+Expected Ship Date: {expected_date}
+
+Shipping Address:
+{delivery_name}
+{delivery_address}
+
+
+Thanks!
