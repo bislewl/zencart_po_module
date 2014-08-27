@@ -581,6 +581,7 @@ if ($_POST['reviewthensend'] != 'yes')
 			else
 				$adres_biling .= $row4[22]."\n".$row4[23].", ".$row4[24]." ".$row4[25]."\n".$row4[26];
 			$price=$row4[3].' '.$row4[29];
+                        $adres .= $row4[11]."\n".$row4[12];
 			// $shipway=$row4[32];
 			$zawartosc2=array();
                         $tracking_link_good=array();
@@ -756,6 +757,7 @@ if ($_POST['reviewthensend'] != 'yes')
       $second_pl_ad = str_replace("{ship_ad}",$tmpt[0][15]."\n".$tmpt[0][5],$second_pl_ad);
       $second_pl_ad = str_replace("{po_number}",$po_num,$second_pl_ad);
       $second_pl_ad = str_replace("{cust_phone}",$tmpt[0][13],$second_pl_ad);
+      $second_pl_ad = str_replace("{cust_email}",$tmpt[0][14],$second_pl_ad);
       $pdf->addClientShipAdresse($second_pl_ad,$po_num);
       $querycp=mysql_query("SELECT orders_products_id FROM ".TABLE_ORDERS_PRODUCTS."  WHERE  orders_id='".$tmpt[0][4]."'  ")
 			or die('Failed to connect database: 8');
@@ -855,6 +857,7 @@ if ($_POST['reviewthensend'] != 'yes')
                         $second_pl_ad = str_replace("{bill_ad}",$tmpt[0][19]."\n".$tmpt[0][6],$second_pl_ad);
                         $second_pl_ad = str_replace("{ship_ad}",$tmpt[0][15]."\n".$tmpt[0][5],$second_pl_ad);
                         $second_pl_ad = str_replace("{cust_phone}",$tmpt[0][13],$second_pl_ad);
+                        $second_pl_ad = str_replace("{cust_email}",$tmpt[0][14],$second_pl_ad);
                         $pdf->addClientShipAdresse($second_pl_ad,$po_num);
                         
                         if ($_POST['addcommentstoplist'] == 1) {  			     
@@ -1032,6 +1035,7 @@ if ($_POST['reviewthensend'] != 'yes')
                         $second_pl_ad = str_replace("{ship_ad}",$tmpt[0][15]."\n".$tmpt[0][5],$second_pl_ad);
                         $second_pl_ad = str_replace("{po_number}",$po_num,$second_pl_ad);
                         $second_pl_ad = str_replace("{cust_phone}",$tmpt[0][13],$second_pl_ad);
+                        $second_pl_ad = str_replace("{cust_email}",$tmpt[0][14],$second_pl_ad);
                         $pdf->addClientShipAdresse($second_pl_ad,$po_num);
                         
                         if ($_POST['addcommentstoplist'] == 1) {  			     
@@ -1160,6 +1164,7 @@ if ($_POST['reviewthensend'] != 'yes')
                         $second_pl_ad = str_replace("{ship_ad}",$tmpt[0][15]."\n".$tmpt[0][5],$second_pl_ad);
                         $second_pl_ad = str_replace("{po_number}",$po_num,$second_pl_ad);
                         $second_pl_ad = str_replace("{cust_phone}",$tmpt[0][13],$second_pl_ad);
+                        $second_pl_ad = str_replace("{cust_email}",$tmpt[0][14],$second_pl_ad);
                         $pdf->addClientShipAdresse($second_pl_ad,$po_num);
                         
                         if ($_POST['addcommentstoplist'] == 1) {  			     
@@ -2054,9 +2059,9 @@ $ordersaddress = $orderaddresscompany.$row2[8].$orderaddresssuburb."<br />".$row
  <tr><td colspan='8'align='center'><?php echo TABLE_COMMENTS_FOR_POS; ?>:&nbsp;<input type="text" name="posubcomments" size="110"></td></tr>
 <tr><td colspan='8'align='center'><br><br></td></tr>
 <?php if (PO_SEND_PACKING_LISTS != 0) { ?>
-<tr><td colspan='8'align='center'><?php echo TABLE_COMMENTS_FOR_PACKING_LISTS; ?>:&nbsp;<input type="text" name="plistcomments" size="90" maxlength="90">&nbsp;&nbsp;<input type="checkbox" name="plistcommentascustomer" value="yes"><?php echo TABLE_PO_COMMENTS_AS_CUSTOMER; ?></td></tr><?php } ?>
+<tr style="display:none;"><td colspan='8'align='center'><?php echo TABLE_COMMENTS_FOR_PACKING_LISTS; ?>:&nbsp;<input type="text" name="plistcomments" size="90" maxlength="90">&nbsp;&nbsp;<input type="checkbox" name="plistcommentascustomer" value="yes"><?php echo TABLE_PO_COMMENTS_AS_CUSTOMER; ?></td></tr><?php } ?>
 <tr><td colspan='8'align='center'><?php echo COMMENTS_WARNING; ?></td></tr>
-<tr><td colspan='8'align='center'><br></td></tr><tr><td colspan='8'align='center'>
+<tr style="display:none;"><td colspan='8'align='center'><br></td></tr><tr><td colspan='8'align='center'>
 <?php if (PO_SEND_PACKING_LISTS == 0) { ?>
 <input type="hidden" name="includepackinglistoption" value="no"> <?php } ?>
 <?php if (PO_SEND_PACKING_LISTS == 1) { ?>
